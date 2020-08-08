@@ -12,7 +12,7 @@
         <!---------------------->
 
         <div class="col chat-column float-1">
-          <div class="chat-container">
+          <div id="messages-container" class="chat-container">
             <div class="chat-message">
               <b>Jacob</b>: Hello!
             </div>
@@ -47,7 +47,7 @@
         <div class="col-2 send-column float-4">
 
           <div class="send-button-container">
-            <button class="send-button">
+            <button v-on:click="addMessage" class="send-button">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
@@ -70,6 +70,16 @@
 <script>
 export default {
   name: 'App',
+  methods: {
+    addMessage: function () {
+      // create new message
+      let divMessage = document.createElement('div');
+      divMessage.innerHTML = "<b>Jacob</b>: " + Math.floor(Math.random() * (1000 - 0 + 1)) + 0;
+      divMessage.className ="chat-message";
+
+      document.getElementById("messages-container").appendChild(divMessage);
+    }
+  }
 }
 </script>
 

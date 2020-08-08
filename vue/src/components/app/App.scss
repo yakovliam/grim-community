@@ -32,11 +32,12 @@
 /* Float Background Animation */
 
 @keyframes float {
+  $floatRandomAmt: random(20) * -1;
   0% {
     transform: translatey(0px);
   }
   50% {
-    transform: translatey(-10px);
+    transform: translatey($floatRandomAmt + px);
   }
   100% {
     transform: translatey(0px);
@@ -58,7 +59,7 @@
 
   //-webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   //box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .side-column {
@@ -69,7 +70,7 @@
   //-webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   //box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
 
-  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ----------------------- Main Text Input Row ----------------------- */
@@ -85,8 +86,7 @@
 
   margin-right: 0.625rem;
 
-  -webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
-  box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .send-column {
@@ -95,8 +95,7 @@
   border-radius: 30px;
   height: 4rem;
 
-  -webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
-  box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------------- END ---------------- */
@@ -118,7 +117,7 @@
 }
 
 .float-4 {
-  animation: float 6s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
   animation-delay: -1.44s;
 }
 
@@ -183,8 +182,8 @@
 .send-button {
   position: relative;
   cursor: pointer;
-  outline: none;
   border: none;
+  outline: none;
   vertical-align: middle;
   text-decoration: none;
   background: transparent;
@@ -252,19 +251,16 @@
   }
 
   &:hover {
-    .circle {
-      width: 100%;
 
-      .icon {
-        &.arrow {
-          background: white;
-          transform: translate(1rem, 0);
-        }
+    .icon {
+      &.arrow {
+        background: white;
+        transform: translate(0.3rem, 0);
       }
     }
 
     .button-text {
-      color: white;
+      color: gray;
     }
   }
 }
@@ -288,7 +284,7 @@
   -webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
 
-  background: -webkit-linear-gradient(to right, #ff9472, #f2709c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ff9472, #f2709c); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ff9472, #f2709c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }

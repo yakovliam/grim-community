@@ -37,7 +37,8 @@
 
           <div class="input-container">
             <span class="input">
-              <input type="text" id="message" placeholder="Enter your message here">
+              <label for="message"></label><input ref="textInput" type="text" id="message"
+                                                  placeholder="Enter your message here">
             </span>
           </div>
 
@@ -47,7 +48,7 @@
         <div class="col-2 send-column float-4">
 
           <div class="send-button-container">
-            <button v-on:click="addMessage" class="send-button">
+            <button v-on:click="sendMessage" class="send-button">
             <span class="circle" aria-hidden="true">
               <span class="icon arrow"></span>
             </span>
@@ -71,13 +72,15 @@
 export default {
   name: 'App',
   methods: {
-    addMessage: function () {
-      // create new message
-      let divMessage = document.createElement('div');
-      divMessage.innerHTML = "<b>Jacob</b>: " + Math.floor(Math.random() * (1000 - 0 + 1)) + 0;
-      divMessage.className ="chat-message";
+    sendMessage: function () {
+      // let message = this.$refs.textInput;
 
-      document.getElementById("messages-container").appendChild(divMessage);
+      // create new message
+      // let divMessage = document.createElement('div');
+      // divMessage.innerHTML = "<b>Jacob</b>: " + Math.floor(Math.random() * (1000 - 0 + 1)) + 0;
+      // divMessage.className = "chat-message";
+      //
+      // document.getElementById("messages-container").appendChild(divMessage);
     }
   }
 }

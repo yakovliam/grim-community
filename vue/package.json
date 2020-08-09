@@ -10,13 +10,13 @@
   "dependencies": {
     "bootstrap": "^4.5.2",
     "core-js": "^3.6.5",
-    "firebase": "^7.17.2",
     "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
     "popper.js": "^1.16.1",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-socket.io": "^3.0.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

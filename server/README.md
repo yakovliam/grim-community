@@ -5,7 +5,7 @@
 Connecting
 -
 
-CLIENT --> SERVER (`connection` channel)
+CLIENT --> SERVER (`join` channel)
 
 ```json
 {
@@ -17,7 +17,8 @@ SERVER --> ALL CLIENTS (`connections` channel)
 
 ```json
 {
-  "username": "usernameHereWhoJoined"
+  "username": "usernameHereWhoJoined",
+  "totalCount": "<int>"
 }
 ```
 

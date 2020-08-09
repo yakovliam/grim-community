@@ -16,6 +16,8 @@
   height: 100%;
 }
 
+/* ----------------------- Animations ----------------------- */
+
 /* APP Background Animation */
 @keyframes background-gradient {
   0% {
@@ -58,25 +60,12 @@
   border-radius: 30px;
   margin-right: 0.625rem;
 
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   //-webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   //box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-
-::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
-}
-/* Optional: show position indicator in red */
-::-webkit-scrollbar-thumb {
-  border-radius: 30px;
-  background: gray;
-  position: relative;
-  &:active {
-    background: #80707A;
-  }
 }
 
 .side-column {
@@ -115,9 +104,13 @@
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* ---------------- END ---------------- */
 
-/* Misc Components / Classes */
+/* ----------------------- Misc Components / Classes ----------------------- */
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
 
 .float-1 {
   animation: float 6s ease-in-out infinite;
@@ -151,18 +144,69 @@
   padding: 20px;
 }
 
-.chat-message {
-  /* */
+.chat-message-self-wrap {
+  text-align: right;
 }
 
-/* Chat / Form */
+.chat-message-self {
+  // padding
+  padding: 10px;
+
+  // border
+  border-radius: 30px;
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+
+  // display / width
+  display: inline-block;
+  width: auto;
+
+  // background
+  background-color: #b4f3ff;
+
+
+  // border
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d6d6d6;
+}
+
+.chat-message-other-wrap {
+  text-align: left;
+}
+
+.chat-message-other {
+  // padding
+  padding: 10px;
+
+  // alignment
+  text-align: right;
+
+  // border
+  border-radius: 30px;
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+
+  // background
+  background-color: #6bf8d6;
+
+  // display / width
+  display: inline-block;
+  width: auto;
+
+  // border
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d6d6d6;
+}
+
+/* ----------------------- Chat / Form ----------------------- */
 .input-container {
   height: 4rem;
   padding: 12px 0 0;
 }
 
 .input {
-
   $gray-hmm: #cbd0d5;
 
   // bigger font size for demo purposes
@@ -187,7 +231,6 @@
   }
 }
 
-/* Send Button */
 .send-button-container {
   padding: 8px 0 0;
 }
@@ -197,88 +240,29 @@
 }
 
 .send-button {
-  position: relative;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  vertical-align: middle;
-  text-decoration: none;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
+  // font
+  font-size: 30px;
+  padding: 0 0 10px;
+  // border
+  border-style: none;
+  border-radius: 40px;
 
+  // colors
+  background-color: black;
+  color: white;
+
+  // dimensions
   width: 100%;
-  height: auto;
+  height: 3rem;
 
-  .circle {
-    @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
-    position: relative;
-    display: block;
-    margin: 0;
-    width: 3rem;
-    height: 3rem;
-    background: black;
-    border-radius: 1.625rem;
-
-    .icon {
-      @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      background: white;
-
-      &.arrow {
-        @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-
-        &::before {
-          position: absolute;
-          content: '';
-          top: -0.25rem;
-          right: 0.0625rem;
-          width: 0.625rem;
-          height: 0.625rem;
-          border-top: 0.125rem solid #fff;
-          border-right: 0.125rem solid #fff;
-          transform: rotate(45deg);
-        }
-      }
-    }
-  }
-
-  .button-text {
-    @include transition(all, 0.45s, cubic-bezier(0.65, 0, .076, 1));
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
-    color: black;
-    font-weight: 700;
-    line-height: 1.6;
-    text-align: center;
-    text-transform: uppercase;
-  }
+  // animation
+  -o-transition: background-color 0.5s linear, color 0.5s linear;
+  -moz-transition: background-color 0.5s linear, color 0.5s linear;
+  -webkit-transition: background-color 0.5s linear, color 0.5s linear;
 
   &:hover {
-
-    .icon {
-      &.arrow {
-        background: white;
-        transform: translate(0.3rem, 0);
-      }
-    }
-
-    .button-text {
-      color: gray;
-    }
+    background-color: white;
+    color:black
   }
 }
 
@@ -303,5 +287,4 @@
 
   background: -webkit-linear-gradient(to right, #ff9472, #f2709c); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ff9472, #f2709c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }

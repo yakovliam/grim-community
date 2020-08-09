@@ -52,14 +52,31 @@
 
 /* ----- Columns ----- */
 .chat-column {
+
   height: 20rem;
   background-color: white;
   border-radius: 30px;
   margin-right: 0.625rem;
 
+  overflow: scroll;
+
   //-webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   //box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: gray;
+  position: relative;
+  &:active {
+    background: #80707A;
+  }
 }
 
 .side-column {

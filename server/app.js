@@ -29,33 +29,51 @@ app.use('/', indexRouter);
 // exports
 module.exports = app;
 
-let connectionCounter = 0;
+/*
+socket_id: {
+    username: 'username'
+}
+ */
+let users = {};
 
 /* Socket */
+
 io.on('connection', (socket) => {
 
-    socket.on('connect', function () {
-        connectionCounter++;
-    });
-    socket.on('disconnect', function () {
-        connectionCounter--;
-    });
-
+    // when the client joins the actual server
     socket.on('join', (data) => {
-        io.emit('connections', {username: data.username, totalCount: connectionCounter});
+        // add object to users
+        users[socket.id] = {username: data.username};
+
+        io.emit('connections', {username: data.username, totalCount: Object.keys(users).length});
     });
 
+    // when the client sends a message
     socket.on('message', (data) => {
+        // get user data
+        const username = users[socket.id].username;
 
-        // get username
-        const username = data.username;
         // get message
         const message = data.message;
 
         // respond to all clients with data
         io.emit('messages', {"username": username, "message": message})
     });
+
+    // when the client disconnects (also acts as "leave" server)
+    socket.on('disconnect', () => {
+        // get user data
+        const username = users[socket.id];
+
+        // remove user
+        delete users[socket.id];
+
+        // emit to all clients updating that a user left
+        io.emit('leave', {"username": username, "totalCount": Object.keys(users).length})
+    });
 });
+
+
 // listen 3000
 server.listen(3000, () => {
     console.log("Starting server!");

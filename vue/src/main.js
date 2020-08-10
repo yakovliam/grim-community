@@ -17,8 +17,8 @@ import 'bootstrap';
 import Login from "@/components/login/Login";
 import Home from "@/components/home/Home";
 
-
-// ----------------------------------------
+// vuetify
+import vuetify from './plugins/vuetify';
 
 // production tip
 Vue.config.productionTip = false;
@@ -57,5 +57,6 @@ const router = new VueRouter({
 new Vue({
     el: '#app',
     router,
-    render: h => h(App),
+    vuetify,
+    render: h => h(App)
 }).$mount('#app');

@@ -1,23 +1,61 @@
 import Vue from 'vue'
-import App from './components/app/App.vue'
-import 'bootstrap';
-import './assets/Main.scss';
-import VueSocketIO from "vue-socket.io";
 
+// socket io
+// import VueSocketIO from "vue-socket.io";
+
+// router
+import VueRouter from 'vue-router';
+
+// components
+import App from '@/components/app/App.vue'
+
+// css
+import './assets/Main.scss';
+
+// bootstrap
+import 'bootstrap';
+import Login from "@/components/login/Login";
+import Home from "@/components/home/Home";
+
+
+// ----------------------------------------
+
+// production tip
 Vue.config.productionTip = false;
 
+// use router
+Vue.use(VueRouter);
+
 // socket
-Vue.use(new VueSocketIO({
-      debug: true,
-      connection: 'http://localhost:3000',
-      vuex: {
-        App,
-        actionPrefix: "SOCKET_",
-        mutationPrefix: "SOCKET_"
-      }
-    })
-);
+// Vue.use(new VueSocketIO({
+//         debug: true,
+//         connection: 'http://localhost:3000',
+//         vuex: {
+//             App,
+//             actionPrefix: "SOCKET_",
+//             mutationPrefix: "SOCKET_"
+//         }
+//     })
+// );
+
+// create vue w/ router
+const router = new VueRouter({
+    routes: [
+        {
+            path: '/',
+            component: Home
+        },
+        {
+            path: '/login',
+            component: Login
+        }
+    ],
+    mode: 'history'
+});
+
 
 new Vue({
-  render: h => h(App),
+    el: '#app',
+    router,
+    render: h => h(App),
 }).$mount('#app');

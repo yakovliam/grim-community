@@ -1,0 +1,290 @@
+/* APP */
+#app {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+
+  animation: background-gradient 15s ease infinite;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ----------------------- Animations ----------------------- */
+
+/* APP Background Animation */
+@keyframes background-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Float Background Animation */
+
+@keyframes float {
+  $floatRandomAmt: random(20) * -1;
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey($floatRandomAmt + px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+
+/* ----------------------- Main Chat Row ----------------------- */
+.chat-row {
+  /* */
+}
+
+/* ----- Columns ----- */
+.chat-column {
+
+  height: 20rem;
+  background-color: white;
+  border-radius: 30px;
+  margin-right: 0.625rem;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  //-webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+  //box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.side-column {
+  height: 20rem;
+  background-color: white;
+  border-radius: 30px;
+
+  //-webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+  //box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ----------------------- Main Text Input Row ----------------------- */
+.text-input-row {
+}
+
+/* ----- Columns ----- */
+.text-input-column {
+  background-color: white;
+  margin-top: 30px;
+  border-radius: 30px;
+  height: 4rem;
+
+  margin-right: 0.625rem;
+
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.send-column {
+  background-color: white;
+  margin-top: 30px;
+  border-radius: 30px;
+  height: 4rem;
+
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ----------------------- Misc Components / Classes ----------------------- */
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+.float-1 {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-2 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -1.72s;
+}
+
+.float-3 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -3.54s;
+}
+
+.float-4 {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: -1.44s;
+}
+
+.component-container {
+  padding: 30px;
+}
+
+.inner-right-side-container {
+  text-align: left;
+  padding: 20px;
+}
+
+.chat-container {
+  padding: 20px;
+}
+
+.chat-message-self-wrap {
+  text-align: right;
+}
+
+.chat-message-self {
+  // padding
+  padding: 10px;
+
+  // border
+  border-radius: 30px;
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+
+  // display / width
+  display: inline-block;
+  width: auto;
+
+  // background
+  background-color: #b4f3ff;
+
+
+  // border
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d6d6d6;
+}
+
+.chat-message-other-wrap {
+  text-align: left;
+}
+
+.chat-message-other {
+  // padding
+  padding: 10px;
+
+  // alignment
+  text-align: right;
+
+  // border
+  border-radius: 30px;
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+
+  // background
+  background-color: #6bf8d6;
+
+  // display / width
+  display: inline-block;
+  width: auto;
+
+  // border
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d6d6d6;
+}
+
+/* ----------------------- Chat / Form ----------------------- */
+.input-container {
+  height: 4rem;
+  padding: 12px 0 0;
+}
+
+.input {
+  $gray-hmm: #cbd0d5;
+
+  // bigger font size for demo purposes
+  font-size: 1.5em;
+
+  // we want rounded corners no matter the size of the field
+  border-radius: 30px;
+
+  width: 100%;
+
+  // style of the actual input field
+  input {
+    border-radius: inherit;
+    outline: none;
+    width: inherit;
+    border-color: $gray-hmm;
+    padding: 0 0.325em;
+  }
+
+  ::placeholder {
+    color: $gray-hmm;
+  }
+}
+
+.send-button-container {
+  padding: 8px 0 0;
+}
+
+@mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
+  transition: $property $duration $ease;
+}
+
+.send-button {
+  // font
+  font-size: 30px;
+  padding: 0 0 10px;
+  // border
+  border-style: none;
+  border-radius: 40px;
+
+  // colors
+  background-color: black;
+  color: white;
+
+  // dimensions
+  width: 100%;
+  height: 3rem;
+
+  // animation
+  -o-transition: background-color 0.5s linear, color 0.5s linear;
+  -moz-transition: background-color 0.5s linear, color 0.5s linear;
+  -webkit-transition: background-color 0.5s linear, color 0.5s linear;
+
+  &:hover {
+    background-color: white;
+    color:black
+  }
+}
+
+/* Banner */
+.banner {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-size: 30px;
+  padding: 0.6rem;
+  text-align: center;
+
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 0.7s;
+
+  height: 4rem;
+
+  -webkit-box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 31px 8px rgba(0, 0, 0, 0.15);
+
+  background: -webkit-linear-gradient(to right, #ff9472, #f2709c); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ff9472, #f2709c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

@@ -5,18 +5,13 @@ import Vue from 'vue'
 
 // router
 import VueRouter from 'vue-router';
-
+import router from './router';
 // components
 import App from '@/components/app/App.vue'
-
 // css
 import './assets/Main.scss';
-
 // bootstrap
 import 'bootstrap';
-import Login from "@/components/login/Login";
-import Home from "@/components/home/Home";
-
 // vuetify
 import vuetify from './plugins/vuetify';
 
@@ -38,25 +33,15 @@ Vue.use(VueRouter);
 //     })
 // );
 
-// create vue w/ router
-const router = new VueRouter({
-    routes: [
-        {
-            path: '/',
-            component: Home
-        },
-        {
-            path: '/login',
-            component: Login
-        }
-    ],
-    mode: 'history'
-});
-
-
 new Vue({
     el: '#app',
     router,
     vuetify,
     render: h => h(App)
 }).$mount('#app');
+
+
+/*
+ * Extra information:
+ * - Storing global variables (like user) using localStorage.getItem("key name here");
+ */

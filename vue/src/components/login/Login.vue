@@ -5,7 +5,7 @@
         <div class="col-md-4 box">
 
           <h1 class="title-text">Login</h1>
-          <div class="subtitle">Don't have an account? Sign up <a href="/signup">here</a>!</div>
+          <div class="subtitle-text">Don't have an account? Sign up <a href="/signup">here</a>!</div>
 
           <div class="divider">
             <hr class="rounded-divider">
@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .grid-container {
 
@@ -125,7 +125,7 @@ export default {
   color: #734B5E;
 }
 
-.subtitle {
+.subtitle-text {
   // positioning / design
   padding-top: 10px;
   text-align: center;

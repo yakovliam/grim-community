@@ -42,14 +42,14 @@
 </template>
 
 <script>
-import router from '../../router';
+import router from "@/router";
 
 export default {
   name: 'Home',
   methods: {
-    toProfile: () => {
+    toProfile() {
       // push to profile page (it will automatically redirect to login if the user data doesn't exist!)
-      router.push('profile');
+      router.push('/profile').catch(()=> {});
     }
   }
 }

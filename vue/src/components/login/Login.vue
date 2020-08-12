@@ -12,35 +12,35 @@
           </div>
 
           <div class="login">
+            <v-form ref="entryForm" @submit.prevent="login">
+              <div class="form">
+                <v-text-field class="text-field" :rules="rules.email" v-model="email" label="Email"></v-text-field>
 
-            <div class="form">
-              <v-text-field class="text-field" :rules="rules.email" label="Email"></v-text-field>
+                <v-text-field
+                    class="text-field"
+                    v-model="password"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :rules="rules.password"
+                    :type="show1 ? 'text' : 'password'"
+                    name="input-10-1"
+                    label="Password"
+                    ref="passwordField"
+                    counter
+                    @click:append="show1 = !show1"
+                ></v-text-field>
+              </div>
 
-              <v-text-field
-                  class="text-field"
-                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                  :rules="rules.password"
-                  :type="show1 ? 'text' : 'password'"
-                  name="input-10-1"
-                  label="Password"
-                  counter
-                  @click:append="show1 = !show1"
-              ></v-text-field>
-            </div>
+              <br/>
 
-            <br/>
-
-            <v-btn
-                v-on:click="login"
-                :loading="loading3"
-                :disabled="loading3"
-                color="primary"
-                class="ma-2 white--text"
-                @click="loader = 'loading3'"
-            >
-              Login
-              <v-icon right dark>mdi-login</v-icon>
-            </v-btn>
+              <v-btn
+                  color="primary"
+                  class="ma-2 white--text"
+                  type="submit"
+              >
+                Login
+                <v-icon right dark>mdi-login</v-icon>
+              </v-btn>
+            </v-form>
           </div>
         </div>
       </div>
@@ -50,12 +50,12 @@
 
 <script>
 import router from "@/router";
+import Vue from 'vue';
 
 export default {
   name: 'Login',
   data: () => ({
     show1: false,
-    password: "Password",
     rules: {
       email: [
         value => !!value || 'Required.', // required test
@@ -69,18 +69,41 @@ export default {
         value => !!value || 'Required.', // required test
         value => (value || '').length >= 8 || 'Min 8 characters', // maximum test
       ],
-    }
+    },
+    password: undefined,
+    email: undefined
   }),
   methods: {
     login() {
 
-    }
-  },
-  created() {
-    // if user DOES exists in localStorage
-    if (localStorage.getItem('user') !== null) {
-      // redirect to profile
-      router.push('/profile');
+      // if the form is NOT validated (something is wrong)
+      if (!this.$refs.entryForm.validate()) {
+        // alert with message (not using alert())
+        alert("hey u messed something up")
+        // return
+        return;
+      }
+
+      // compile data into a request
+      const data = {
+        email: this.email,
+        password: this.password
+      }
+
+      // construct axios request
+      Vue.axios.post('url_here', data).then(success => {
+        console.log(success);
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+
+    mounted() {
+      // if user DOES exists in localStorage
+      if (localStorage.getItem('user') !== null) {
+        // redirect to profile
+        router.push('/profile').catch(()=> {});
+      }
     }
   }
 }

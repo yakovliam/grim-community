@@ -38,11 +38,6 @@
         </div>
       </div>
     </div>
-    <svg class="svg-background" viewBox="0 0 1440 320">
-      <path
-          d="M0,256L34.3,234.7C68.6,213,137,171,206,160C274.3,149,343,171,411,160C480,149,549,107,617,85.3C685.7,64,754,64,823,96C891.4,128,960,192,1029,213.3C1097.1,235,1166,213,1234,218.7C1302.9,224,1371,256,1406,272L1440,288L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
-      </path>
-    </svg>
   </div>
 </template>
 
@@ -75,58 +70,6 @@ export default {
   overflow-y: hidden;
   overflow-x: hidden;
 }
-
-.svg-background {
-  fill: #4b46d1;
-  fill-opacity: 1;
-  position: absolute;
-
-  z-index: -1;
-  transform: translateY(-242px) scale(1.4);
-}
-
-@media (max-width: 3000px) {
-  .svg-background {
-    transform: translateY(-142px) scale(2.4);
-  }
-}
-
-@media (max-width: 1200px) {
-  .svg-background {
-    transform: translateY(342px) scale(2.4);
-  }
-}
-
-@media (max-width: 1000px) {
-  .svg-background {
-    transform: translateY(-142px) scale(2.4);
-  }
-}
-
-@media (max-width: 800px) {
-  .svg-background {
-    transform: translateY(-20px) scale(5);
-  }
-}
-
-@media (max-width: 450px) {
-  .svg-background {
-    transform: translateY(200px) scale(5);
-  }
-}
-
-@media (max-width: 400px) {
-  .svg-background {
-    transform: translateY(-100px) scale(5);
-  }
-}
-
-@media (max-width: 375px) {
-  .svg-background {
-    transform: translateY(100px) scale(5);
-  }
-}
-
 
 .grid-container {
   text-align: center;
@@ -199,6 +142,14 @@ export default {
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
+}
+
+@media (max-width: 500px) {
+  .elevated-box {
+    padding: 5%;
+
+    height: 50%;
+  }
 }
 
 .weighted-button-text {

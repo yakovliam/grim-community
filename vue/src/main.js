@@ -1,24 +1,28 @@
-import Vue from 'vue'
+/*
+Imports
+ */
 
+/* VUE */
+import Vue from 'vue'
 // socket io
 // import VueSocketIO from "vue-socket.io";
-
 // router
 import VueRouter from 'vue-router';
 import router from './router';
-// components
+// components & css & frameworks
 import App from '@/components/app/App.vue'
-// css
 import './assets/Main.scss';
-// bootstrap
 import 'bootstrap';
-// vuetify
 import vuetify from './plugins/vuetify';
+// http requests
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 // production tip
 Vue.config.productionTip = false;
 
-// use router
+// use router & axios for post/get http requests
+Vue.use(VueAxios, axios)
 Vue.use(VueRouter);
 
 // socket

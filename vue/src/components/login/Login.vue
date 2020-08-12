@@ -14,9 +14,10 @@
           <div class="login">
 
             <div class="form">
-              <v-text-field :rules="rules.email" label="Email"></v-text-field>
+              <v-text-field class="text-field" :rules="rules.email" label="Email"></v-text-field>
 
               <v-text-field
+                  class="text-field"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                   :rules="rules.password"
                   :type="show1 ? 'text' : 'password'"
@@ -30,6 +31,7 @@
             <br/>
 
             <v-btn
+                v-on:click="login"
                 :loading="loading3"
                 :disabled="loading3"
                 color="primary"
@@ -47,6 +49,8 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: 'Login',
   data: () => ({
@@ -67,13 +71,17 @@ export default {
       ],
     }
   }),
+  methods: {
+    login() {
+
+    }
+  },
   created() {
-    //todo uncomment
-    // // if user DOES exists in localStorage
-    // if (localStorage.getItem("user") !== null) {
-    //   // redirect to profile
-    //   this.$router.push("/profile");
-    // }
+    // if user DOES exists in localStorage
+    if (localStorage.getItem('user') !== null) {
+      // redirect to profile
+      router.push('/profile');
+    }
   }
 }
 </script>
@@ -168,45 +176,12 @@ hr.rounded-divider {
   padding-bottom: 30px;
 }
 
-.go-button {
-  font-family: "Roboto", sans-serif;
-
-  // border
-  border-radius: 10px;
-  border-width: 0;
-
-  // width
-  width: 240px;
-  height: 40px;
-
-  // color
-  color: white;
-  background-color: #1eb8ff;
-
-  transition: 1s ease;
-
-  &:hover {
-    border-radius: 30px;
-    background-color: #1587bc;
-    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+@media (max-width: 1000px) {
+  .form {
+    width: 100%;
   }
-
-  @keyframes shake {
-    10%, 90% {
-      transform: translate3d(-1px, 0, 0);
-    }
-
-    20%, 80% {
-      transform: translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-      transform: translate3d(4px, 0, 0);
-    }
+  .text-field {
+    width: 100%;
   }
 }
 

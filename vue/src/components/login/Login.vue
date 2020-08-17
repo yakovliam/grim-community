@@ -14,6 +14,15 @@
           <div class="login">
             <v-form ref="entryForm" @submit.prevent="login">
               <div class="form">
+
+                <v-alert v-model="alertShown" border="right"
+                         colored-border
+                         type="error"
+                         elevation="2"
+                         dismissible>
+                  {{ alertText }}
+                </v-alert>
+
                 <v-text-field class="text-field" :rules="rules.email" v-model="email" label="Email"></v-text-field>
 
                 <v-text-field
@@ -52,9 +61,14 @@
 import router from "@/router";
 import Vue from 'vue';
 
+let alertText = undefined;
+let alertShown = false;
+
 export default {
   name: 'Login',
   data: () => ({
+    alertText: alertText,
+    alertShown: alertShown,
     show1: false,
     rules: {
       email: [
@@ -79,7 +93,9 @@ export default {
       // if the form is NOT validated (something is wrong)
       if (!this.$refs.entryForm.validate()) {
         // alert with message (not using alert())
-        alert("hey u messed something up")
+        this.alertText = "Hmm... you missed something!";
+        this.alertShown = true;
+
         // return
         return;
       }
@@ -94,6 +110,8 @@ export default {
       Vue.axios.post('url_here', data).then(success => {
         console.log(success);
       }).catch(error => {
+        alertText = error;
+        alertShown = true;
         console.log(error);
       });
     },
@@ -102,7 +120,8 @@ export default {
       // if user DOES exists in localStorage
       if (localStorage.getItem('user') !== null) {
         // redirect to profile
-        router.push('/profile').catch(()=> {});
+        router.push('/profile').catch(() => {
+        });
       }
     }
   }

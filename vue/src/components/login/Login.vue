@@ -73,15 +73,16 @@ export default {
     rules: {
       email: [
         value => !!value || 'Required.', // required test
-        value => (value || '').length <= 20 || 'Max 20 characters', // maximum test
         value => { // email test
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           return pattern.test(value) || 'Invalid Email.'
         },
+        value => (value || '').length >= 5 || 'Min 5 characters', // minimum test
       ],
       password: [
         value => !!value || 'Required.', // required test
-        value => (value || '').length >= 8 || 'Min 8 characters', // maximum test
+        value => (value || '').length >= 8 || 'Min 8 characters', // minimum test
+        value => (value || '').length < 2048 || 'Max 2048 characters', // maximum test
       ],
     },
     password: undefined,
@@ -107,22 +108,23 @@ export default {
       }
 
       // construct axios request
-      Vue.axios.post('url_here', data).then(success => {
-        console.log(success);
+      Vue.axios.post('http://localhost:3000/user/login', data).then(success => {
+        // get returned user object, and put it into local storage
+        localStorage.setItem("user", success.data.user);
+        // refresh page (will automatically redirect if success!)
+        router.go(0);
       }).catch(error => {
-        alertText = error;
-        alertShown = true;
-        console.log(error);
+        this.alertText = ((error && error.response) ? error.response.data.message : "Oops! Something went wrong.");
+        this.alertShown = true;
       });
     },
-
-    mounted() {
-      // if user DOES exists in localStorage
-      if (localStorage.getItem('user') !== null) {
-        // redirect to profile
-        router.push('/profile').catch(() => {
-        });
-      }
+  },
+  mounted() {
+    // if user DOES exists in localStorage
+    if (localStorage.getItem("user")) {
+      // redirect to profile
+      router.push('/profile').catch(() => {
+      });
     }
   }
 }

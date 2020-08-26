@@ -4,8 +4,6 @@ Imports
 
 /* VUE */
 import Vue from 'vue'
-// socket io
-// import VueSocketIO from "vue-socket.io";
 // router
 import VueRouter from 'vue-router';
 import router from './router';
@@ -24,18 +22,6 @@ Vue.config.productionTip = false;
 // use router & axios for post/get http requests
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter);
-
-// socket
-// Vue.use(new VueSocketIO({
-//         debug: true,
-//         connection: 'http://localhost:3000',
-//         vuex: {
-//             App,
-//             actionPrefix: "SOCKET_",
-//             mutationPrefix: "SOCKET_"
-//         }
-//     })
-// );
 
 new Vue({
     el: '#app',

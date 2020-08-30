@@ -1,6 +1,6 @@
 <template>
   <div>
-    This is profile???
+    - Profile Page
   </div>
 </template>
 

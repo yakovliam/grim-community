@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 // routes
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user/user');
+const roomRouter = require('./routes/room/room');
 
 // configure dotenv
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/room', roomRouter);
 
 // connect to mongodb
 mongoose.connect(process.env.MONGO_CONN_URL, {useNewUrlParser: true, useUnifiedTopology: true}, (e) => {

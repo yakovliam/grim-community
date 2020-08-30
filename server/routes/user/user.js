@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const User = require('../../models/User');
+const User = require('/models/User');
 const bcrypt = require('bcrypt');
 
 router.post('/login', async (req, res, next) => {
@@ -12,7 +12,7 @@ router.post('/login', async (req, res, next) => {
 
     // if any of the parameters are missing, return
     if (!email || !rawPassword) {
-        return err(res, "Incorrect email or password!");
+        return accessDenied(res, "Incorrect email or password!");
     }
 
     // get user object from mongoose
@@ -20,13 +20,13 @@ router.post('/login', async (req, res, next) => {
 
     // if user doesn't exist, *wrong credentials*
     if (!user) {
-        return err(res, "Incorrect email or password!");
+        return accessDenied(res, "Incorrect email or password!");
     }
 
     // compare hashed & raw password
     if (!(await bcrypt.compare(rawPassword, user.password))) {
         // no! *wrong credentials*
-        return err(res, "Incorrect email or password!");
+        return accessDenied(res, "Incorrect email or password!");
     }
 
     /* user is authenticated! */
@@ -60,7 +60,7 @@ router.post('/create', async (req, res, next) => {
 
     // if any of the required fields are missing, then...return!
     if (!username || !email || !rawPassword) {
-        return err(res, "Missing data!");
+        return badRequest(res, "Missing data!");
     }
 
     // does a user with that email or username already exist?
@@ -73,7 +73,7 @@ router.post('/create', async (req, res, next) => {
 
     // yup, so return
     if (alreadyExists) {
-        return err(res, "A user with that email or username already exists!");
+        return badRequest(res, "A user with that email or username already exists!");
     }
 
     // hash password to create a new safe-for-storage one!
@@ -86,11 +86,36 @@ router.post('/create', async (req, res, next) => {
     res.status(201).send("Success");
 });
 
-const err = (response, message) => {
-    // if exists, clear token
-    response.clearCookie("token");
-
+const accessDenied = (response, message) => {
     return response.status(401).send({message: message});
+}
+
+const badRequest = (response, message) => {
+    return response.status(400).send({message: message});
+}
+
+const created = (response, message) => {
+    return response.status(201).send({message: message});
+}
+
+async function auth(req, res, next) {
+    // get JWT token
+    const token = req.cookies.token;
+
+    // if no token, err
+    if (!token) return accessDenied(res, "Invalid token!");
+
+    // verify
+    jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
+        // send denied access
+        if(error) return accessDenied(res, "Invalid token!");
+
+        // get user from token and assign to request
+        req.user = user;
+
+        // call next
+        next();
+    });
 }
 
 module.exports = router;

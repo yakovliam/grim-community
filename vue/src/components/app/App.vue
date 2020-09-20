@@ -2,9 +2,9 @@
   <!--  <div id="app">-->
   <v-app>
     <!--    Designing   -->
-<!--    <div class="page">-->
-      <router-view/>
-<!--    </div>-->
+    <!--    <div class="page">-->
+    <router-view/>
+    <!--    </div>-->
   </v-app>
   <!--  </div>-->
 </template>

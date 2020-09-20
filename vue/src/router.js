@@ -1,15 +1,15 @@
 import VueRouter from "vue-router";
-import Home from "@/components/home/Home";
 import Login from "@/components/login/Login";
 import Profile from "@/components/profile/Profile";
 import Signup from "@/components/signup/Signup";
+import Home2 from "@/components/home/Home2";
 
 // create router
 const router = new VueRouter({
     routes: [
         {
             path: '/home',
-            component: Home,
+            component: Home2,
             alias: '/'
         },
         {
@@ -22,7 +22,6 @@ const router = new VueRouter({
             component: Profile,
             meta: {
                 requiresAuth: true,
-                disconnectFromSocket: true
             }
         },
         {

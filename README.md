@@ -1,4 +1,4 @@
-# Vue Chat Room
+# Vue Project
 
 Technologies
 -
@@ -6,7 +6,5 @@ Technologies
 * Server
     * NodeJS
     * Express
-    * Socket.io
 * Client
     * Vue.js
-    * Socket.io

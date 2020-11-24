@@ -2,14 +2,15 @@ import VueRouter from "vue-router";
 import Login from "@/components/login/Login";
 import Profile from "@/components/profile/Profile";
 import Signup from "@/components/signup/Signup";
-import Home2 from "@/components/home/Home2";
+import Home from "@/components/home/Home";
 
 // create router
 const router = new VueRouter({
     routes: [
         {
             path: '/home',
-            component: Home2,
+            name: 'home',
+            component: Home,
             alias: '/'
         },
         {
@@ -19,6 +20,7 @@ const router = new VueRouter({
         },
         {
             path: '/profile',
+            name: 'profile',
             component: Profile,
             meta: {
                 requiresAuth: true,
@@ -26,8 +28,13 @@ const router = new VueRouter({
         },
         {
             path: '/signup',
+            name: 'signup',
             component: Signup
-        }
+        },
+        {
+            path: '*',
+            redirect: { name: 'login' }
+        },
     ],
     mode: 'history'
 });

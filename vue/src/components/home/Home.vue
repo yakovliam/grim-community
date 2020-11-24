@@ -7,7 +7,7 @@
           <div class="col box">
             <v-toolbar dark flat color="#46b5d1">
               <!--            <v-app-bar-nav-icon></v-app-bar-nav-icon>-->
-              <v-toolbar-title>(IDK the name yet)</v-toolbar-title>
+              <v-toolbar-title>Grim</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-btn v-on:click="toProfile" icon>
                 <v-icon>mdi-account-circle</v-icon>
@@ -15,10 +15,10 @@
             </v-toolbar>
             <div class="top-title">
               <div class="title-text">
-                (IDK the name yet) Community
-                <div class="subtitle-text">
-                  A live community interaction experience
-                </div>
+                Grim
+              </div>
+              <div class="subtitle-text">
+                It does stuff
               </div>
             </div>
           </div>
@@ -29,8 +29,8 @@
               <div class="elevated-box elevation-10">
                 {{ randomGreeting() }}
                 <div class="go-button">
-                  <v-btn v-on:click="toProfile" block color="secondary" dark>Go to
-                    <div class="weighted-button-text">Your Profile</div>
+                  <v-btn v-on:click="toProfile" block color="secondary" dark>
+                    Go to<div class="weighted-button-text">Your Profile</div>
                   </v-btn>
                 </div>
                 <!--              <div class="subtitle-text-2">Designed for NA</div>-->
@@ -40,13 +40,17 @@
         </div>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import router from "@/router";
+import Footer from "@/components/static/Footer";
+
 export default {
   name: 'Home',
+  components: {Footer},
   methods: {
     toProfile() {
       // push to profile page (it will automatically redirect to login if the user data doesn't exist!)
@@ -58,11 +62,12 @@ export default {
       const msgs = [
         ["What's up?", 10],
         ["Check it out!", 10],
-        ["...Checking in?", 5],
-        ["Welcome!", 5],
-        ["How's it going?", 5],
-        ["Yeah, sometimes.", 5],
+        ["...Checking in?", 10],
+        ["Welcome!", 10],
+        ["How's it going?", 10],
+        ["Yeah, sometimes.", 1],
         ["Uh, okay?", 1],
+          ["Dude, stop. That's not normal.", 0.1]
       ];
 
       // Storage for our flat array.
@@ -87,16 +92,11 @@ export default {
 <style lang="scss" scoped>
 
 .page {
-  background: #46b5d1;
+  background-color: #46b5d1;
   color: white;
 
-  position: absolute;
-
   width: 100%;
-  height: 100%;
-
-  overflow-y: hidden;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .grid-container {
@@ -111,8 +111,9 @@ export default {
 /* -------------------- TITLE -------------------- */
 
 .top-title {
-  padding-top: 14rem;
+  padding-top: 10rem;
   padding-bottom: 5rem;
+  display: inline-block;
 }
 
 @media (max-width: 500px) {
@@ -123,20 +124,52 @@ export default {
 
 .title-text {
   // font
-  font-size: 40px;
+  font-size: 100px;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
+  color: white;
+  width: fit-content;
+
+  text-shadow: 1px 1px #fe4902,
+  2px 2px #fe4902,
+  3px 3px #fe4902,
+  4px 4px #fe4902,
+  5px 5px #fe4902,
+  5px 6px #fe4902,
+  7px 7px #fe4902,
+  8px 8px #fe4902;
+
+  &:hover {
+    position: relative;
+    top: -3px;
+    left: -3px;
+    text-shadow: 1px 1px #fe4902,
+    2px 2px #fe4902,
+    3px 3px #fe4902,
+    4px 4px #fe4902,
+    5px 5px #fe4902,
+    6px 6px #fe4902,
+    7px 7px #fe4902,
+    8px 8px #fe4902,
+    9px 9px #fe4902,
+    10px 10px #fe4902,
+    11px 11px #fe4902,
+    12px 12px #fe4902;
+  }
+}
+
+.subtitle-text {
+  // font
+  font-family: 'Montserrat', sans-serif;
   color: white;
 
-  .subtitle-text {
-    // positioning / design
-    padding-top: 5px;
-    text-align: center;
+  // positioning / design
+  padding-top: 5px;
+  text-align: center;
 
-    // font
-    font-size: 20px;
-    font-weight: 600;
-  }
+  // font
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* -------------------- BOX ELEVATED -------------------- */
@@ -172,21 +205,13 @@ export default {
   font-weight: 200;
 }
 
-@media (max-width: 500px) {
-  .elevated-box {
-    padding: 5%;
-
-    height: 50%;
-  }
-}
-
 .weighted-button-text {
   padding-left: 5px;
   font-weight: 900;
 }
 
 .go-button {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 .subtitle-text-2 {

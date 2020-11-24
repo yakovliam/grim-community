@@ -54,18 +54,21 @@
         </div>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import router from "@/router";
 import Vue from 'vue';
+import Footer from "@/components/static/Footer";
 
 let alertText = undefined;
 let alertShown = false;
 
 export default {
   name: 'Login',
+  components: {Footer},
   data: () => ({
     alertText: alertText,
     alertShown: alertShown,
@@ -135,7 +138,7 @@ export default {
 .grid-container {
 
   // positioning, height
-  height: 100%;
+  min-height: 100vh;
 
   // padding
   padding: 3rem;
@@ -214,20 +217,20 @@ hr.rounded-divider {
   display: inline-block;
 
   // width
-  width: 50%;
+  width: 100%;
 
   // padding
   padding-bottom: 30px;
 }
 
-@media (max-width: 1000px) {
-  .form {
-    width: 100%;
-  }
-  .text-field {
-    width: 100%;
-  }
-}
+//@media (min-width: 1000px) {
+//  .form {
+//    width: 100%;
+//  }
+//  .text-field {
+//    width: 100%;
+//  }
+//}
 
 // disable outline on focus
 textarea:focus, input:focus, .v-btn:focus, button:focus {

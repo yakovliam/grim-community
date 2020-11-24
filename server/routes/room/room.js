@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const Room = require('/models/Room');
+const Room = require('../../models/Room');
 
 /**
  * Required params:
